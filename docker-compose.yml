@@ -1,0 +1,32 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:/usr/src/app
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
+    tmpfs: 
+      - /usr/src/app/tmp
+    command: 'bundle exec rails server -b 0.0.0.0'
+
+  database:
+    image: mysql:5
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD='yes'
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=dummy_development
+      - MYSQL_USER=root
+    expose:
+      - '3306'
+    ports:
+      - '3306:3306'
+    volumes:
+      - "database:/var/lib/mysql"
+      - ".:/docker-entrypoint-initdb.d"
+
+volumes:
+  database:
