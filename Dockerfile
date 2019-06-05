@@ -6,8 +6,7 @@
 FROM ruby:2.6
 
 # Install ruby-debug-ide and debase
-RUN gem install ruby-debug-ide
-RUN gem install debase
+RUN gem install ruby-debug-ide debase solargraph
 
 # Install git, process tools
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \

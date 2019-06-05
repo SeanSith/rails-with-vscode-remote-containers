@@ -21,6 +21,7 @@
 	"workspaceFolder": "/usr/src/app",
 	"shutdownAction": "stopCompose",
 	"extensions": [
-		"rebornix.Ruby"
+		"rebornix.Ruby",
+		"castwide.solargraph"
 	]
 }
