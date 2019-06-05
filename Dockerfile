@@ -9,9 +9,10 @@ FROM ruby:2.6
 RUN gem install ruby-debug-ide
 RUN gem install debase
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 # Install git, process tools
-RUN apt-get update && apt-get -y install git procps nodejs
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    apt-get update && \
+    apt-get -y install git procps nodejs
 
 RUN npm install -g yarn
 
