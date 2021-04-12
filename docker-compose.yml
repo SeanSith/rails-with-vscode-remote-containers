@@ -19,7 +19,6 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD='yes'
       - MYSQL_ROOT_HOST=%
       - MYSQL_DATABASE=dummy_development
-      - MYSQL_USER=root
     expose:
       - '3306'
     ports:
