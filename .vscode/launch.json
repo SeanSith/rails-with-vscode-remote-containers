@@ -1,0 +1,15 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "rdbg",
+            "name": "Debug Rails Server",
+            "request": "launch",
+            "script": "bin/rails server -b 0.0.0.0 -p 3001 -P tmp/pids/debug-server.pid",
+            "askParameters": true
+        }
+    ]
+}

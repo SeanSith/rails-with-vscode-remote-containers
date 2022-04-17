@@ -1,32 +1,31 @@
 version: '3'
+
 services:
   app:
+    image: rails-app
     build:
-      context: ./
-    ports:
-      - '3000:3000'
+      context: .
+      dockerfile: docker/app/Dockerfile.dev
     volumes:
-      - ./:/usr/src/app
-      - ~/.gitconfig:/root/.gitconfig
-      - ~/.ssh:/root/.ssh
-    tmpfs: 
-      - /usr/src/app/tmp
-    command: 'bundle exec rails server -b 0.0.0.0'
+      - ./:/app
+    tmpfs:
+      - /app/tmp/pids
+    ports:
+      - 3000:3000
+    working_dir: /app
+    tty: true
+    command: docker/app/startup.sh
 
   database:
-    image: mysql:5
-    environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD='yes'
-      - MYSQL_ROOT_HOST=%
-      - MYSQL_DATABASE=dummy_development
-      - MYSQL_USER=root
-    expose:
-      - '3306'
-    ports:
-      - '3306:3306'
+    image: mariadb
     volumes:
       - "database:/var/lib/mysql"
       - ".:/docker-entrypoint-initdb.d"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3306:3306
 
 volumes:
   database:
